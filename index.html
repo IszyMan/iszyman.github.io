@@ -392,6 +392,110 @@
                 transition: none;
             }
         }
+
+        /* Actual Statusly screen, presented inside an angled phone. */
+
+        .phone-showcase {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            padding: 28px 10px;
+            perspective: 1100px;
+        }
+        
+        .phone-frame {
+            position: relative;
+            width: min(100%, 300px);
+            padding: 9px;
+            border: 1px solid #42534d;
+            border-radius: 38px;
+            background: #14241e;
+        
+            transform:
+                rotateY(-14deg)
+                rotateZ(-5deg);
+        
+            box-shadow:
+                18px 28px 45px rgba(7, 64, 46, 0.18),
+                3px 8px 14px rgba(7, 64, 46, 0.12);
+        }
+        
+        /* Small side buttons on the phone frame. */
+        
+        .phone-frame::before,
+        .phone-frame::after {
+            content: "";
+            position: absolute;
+            left: -4px;
+            width: 3px;
+            border-radius: 3px 0 0 3px;
+            background: #344b40;
+        }
+        
+        .phone-frame::before {
+            top: 110px;
+            height: 42px;
+        }
+        
+        .phone-frame::after {
+            top: 165px;
+            height: 60px;
+        }
+        
+        .phone-screen {
+            overflow: hidden;
+            border-radius: 29px;
+            background: #075e54;
+        }
+        
+        /*
+         * Show the screenshot above the ad.
+         * These proportions match your supplied 576 × 1280 screenshot.
+         */
+        
+        .phone-content {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 576 / 872;
+        }
+        
+        .phone-content img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Show the bottom navigation directly beneath the content. */
+        
+        .phone-navigation {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 576 / 108;
+        }
+        
+        .phone-navigation img {
+            position: absolute;
+            top: -1018.518519%;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        @media (max-width: 760px) {
+            .phone-showcase {
+                padding: 20px 16px 30px;
+            }
+        
+            .phone-frame {
+                width: min(100%, 280px);
+        
+                transform:
+                    rotateY(-10deg)
+                    rotateZ(-4deg);
+            }
+        }
     </style>
 </head>
 
@@ -508,33 +612,28 @@
                 </p>
             </div>
 
-            <div class="visual" aria-hidden="true">
-                <div class="visual-top">
-                    <span class="visual-title">Your saved moments</span>
-                    <span class="visual-tag">Photos & videos</span>
+            <div class="phone-showcase">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="phone-content">
+                            <img
+                                src="assets/statusly-home.jpeg"
+                                alt="Statusly home screen showing status photos and videos"
+                                width="576"
+                                height="1280"
+                            >
+                        </div>
+            
+                        <div class="phone-navigation" aria-hidden="true">
+                            <img
+                                src="assets/statusly-home.jpeg"
+                                alt=""
+                                width="576"
+                                height="1280"
+                            >
+                        </div>
+                    </div>
                 </div>
-
-                <div class="media-grid">
-                    <div class="media-tile">
-                        <svg><use href="#photo"/></svg>
-                    </div>
-
-                    <div class="media-tile">
-                        <svg><use href="#play"/></svg>
-                    </div>
-
-                    <div class="media-tile">
-                        <svg><use href="#play"/></svg>
-                    </div>
-
-                    <div class="media-tile">
-                        <svg><use href="#photo"/></svg>
-                    </div>
-                </div>
-
-                <p class="visual-caption">
-                    Save. Organize. Share.
-                </p>
             </div>
         </section>
 
